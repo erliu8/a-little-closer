@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <!-- 所有资源随游戏打包，内嵌模式也使用相同的页面入口。 -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#141b28">
+  <meta name="description" content="《再近一点？》一段关于距离、耳机与末班车的互动短篇。">
+  <title>再近一点？ · A Little Closer?</title>
+  <link rel="icon" href="data:,">
+</head>
+<body>
+  <main class="game">
+    <!-- 抬头保留标题与音频控制，剧情加载后即可直接开始。 -->
+    <header class="mast">
+      <div class="nameplate"><h1>再近一点<span>？</span></h1><p lang="en">A Little Closer?</p></div>
+      <button id="sound" type="button" aria-pressed="false">开启声音</button>
+    </header>
+    <!-- 舞台和轨道共用同一套物理位置，亲密度另行显示。 -->
+    <section id="stage" aria-label="剧情舞台"></section>
+    <div class="desk">
+      <section class="dialogue" aria-label="当前剧情">
+        <p id="scene-title"></p>
+        <div aria-live="polite" aria-atomic="true"><p id="speaker"></p><p id="line"></p></div>
+        <div id="choices" class="choices"></div>
+      </section>
+      <section class="controls" aria-label="互动控制">
+        <div class="hud-line"><h2>两人之间</h2><span id="affection"></span></div>
+        <div id="track" role="slider" tabindex="0" aria-label="男生在距离轨道的位置" aria-describedby="instructions" aria-valuemin="0" aria-valuemax="100" aria-valuenow="20">
+          <div class="rail"><i id="target" hidden></i><i id="partner"></i><i id="player"></i></div>
+        </div>
+        <p id="instructions"><kbd>Shift</kbd> + 拖动或 <kbd>←</kbd> <kbd>→</kbd> 靠近、后退。触屏可直接拖动。圆点是你，停在亮区回应她。</p>
+        <div id="clock" hidden><span>回应时间</span><progress id="time-left" aria-label="剩余回应时间"></progress></div>
+      </section>
+    </div>
+    <!-- 浏览器或音频错误会展示给玩家，保留可诊断的信息。 -->
+    <p id="error" role="alert" hidden></p>
+    <noscript>请启用 JavaScript 以游玩《再近一点？》。</noscript>
+  </main>
+  <script type="module" src="./src/main.ts"></script>
+</body>
+</html>

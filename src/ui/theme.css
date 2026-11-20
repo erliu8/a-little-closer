@@ -1,0 +1,56 @@
+/* 夜间站台的暗蓝、车票纸色和信号灯橙贯穿整个操作区。 */
+:root { color-scheme: dark; font-family: "Microsoft YaHei", "PingFang SC", system-ui, sans-serif; color: #f3ebdb; background: #141b28; --muted: #b4b7bf; --accent: #ffc18b; }
+* { box-sizing: border-box; }
+body { margin: 0; }
+.game { width: min(100% - 48px, 1100px); margin: 0 auto; padding: clamp(20px, 4vh, 52px) 0 36px; }
+.mast, .nameplate, .hud-line { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.mast { margin-bottom: 22px; }
+.nameplate { align-items: baseline; flex-wrap: wrap; justify-content: flex-start; gap: 4px 18px; }
+h1, h2, p { margin: 0; }
+h1, #line { font-family: "Songti SC", SimSun, Georgia, serif; }
+h1 { font-size: clamp(32px, 5vw, 56px); line-height: 1.15; font-weight: 700; letter-spacing: .035em; }
+h1 span { color: var(--accent); }
+.nameplate p { font-family: Georgia, serif; font-style: italic; color: var(--muted); font-size: 18px; }
+button { font: inherit; color: inherit; border: 1px solid #596174; background: transparent; border-radius: 3px; padding: 9px 14px; cursor: pointer; }
+button:hover { color: #fff; background: #293448; }
+button:focus-visible, #track:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
+#sound { font-size: 13px; flex-shrink: 0; }
+#stage { background: #182739; overflow: hidden; border: 1px solid #495269; }
+
+/* 舞台下保留固定阅读起点，短对白和长选项都可以自然换行。 */
+.desk { display: grid; grid-template-columns: minmax(0, 1.45fr) minmax(260px, 1fr); gap: clamp(26px, 5vw, 72px); padding: 26px 0; align-items: start; }
+#scene-title { color: var(--muted); font-size: 13px; letter-spacing: .08em; margin-bottom: 18px; }
+#speaker { font-size: 14px; font-weight: 700; color: var(--accent); margin-bottom: 6px; }
+#line { font-size: clamp(20px, 2.35vw, 28px); line-height: 1.65; }
+.choices { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 22px; }
+.choices:empty { display: none; }
+.choices button:first-child { color: #302821; background: var(--accent); border-color: var(--accent); }
+.choices button:first-child:hover { background: #ffd4ad; }
+
+/* 满足触控热区，轨道上的圆点与竖线在无颜色时也能区分角色。 */
+.controls { border-left: 1px solid #424a59; padding: 6px 0 6px clamp(20px, 3vw, 34px); }
+.hud-line h2 { font-size: 17px; }
+#affection { font-size: 13px; color: var(--accent); font-variant-numeric: tabular-nums; }
+#track { position: relative; height: 50px; cursor: ew-resize; user-select: none; touch-action: none; }
+#track[aria-disabled=true] { cursor: default; }
+.rail { position: absolute; inset: 24px 0 auto; height: 3px; background: #657083; }
+.rail i { position: absolute; top: 50%; transform: translate(-50%, -50%); }
+#player { width: 13px; height: 13px; border-radius: 50%; background: var(--accent); outline: 2px solid #141b28; }
+#partner { width: 4px; height: 20px; background: #e3ecf5; }
+#target { height: 16px; background: #ffc18b25; border-inline: 1px dashed var(--accent); transform: translateY(-50%); }
+#instructions, #clock { color: var(--muted); font-size: 13px; line-height: 1.7; }
+kbd { font-family: inherit; border: 1px solid #576273; border-radius: 3px; padding: 0 4px; color: #e4e6ea; }
+#clock:not([hidden]) { display: flex; gap: 12px; align-items: center; margin-top: 15px; }
+progress { width: 45%; height: 6px; accent-color: var(--accent); }
+#error { color: #ffd4b4; padding: 10px 0; }
+
+/* 窄屏先显示故事，再显示触控轨道。 */
+@media (max-width: 700px) {
+  .game { width: calc(100% - 28px); padding-top: 20px; }
+  .mast { margin-bottom: 16px; }
+  .nameplate { display: block; }
+  .nameplate p { font-size: 14px; margin-top: 3px; }
+  .desk { grid-template-columns: 1fr; gap: 22px; padding: 18px 0; }
+  .controls { padding: 15px 0 0; border-left: 0; border-top: 1px solid #424a59; }
+  #scene-title { margin-bottom: 12px; }
+}

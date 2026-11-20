@@ -1,0 +1,5 @@
+# Windows 和其他平台共用 UTF-8 源码与 LF 换行。
+* text=auto eol=lf
+*.png binary
+*.webp binary
+*.ogg binary

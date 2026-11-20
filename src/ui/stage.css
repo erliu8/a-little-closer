@@ -1,0 +1,8 @@
+/* 画布保持同一宽高比，窗口缩放不会拉伸立绘或改变游戏中的距离。 */
+.story-stage {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 480 / 156;
+  image-rendering: pixelated;
+}
